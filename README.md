@@ -1,1 +1,1 @@
-Test Driven Development ofthe game of TicTacToe. 
+Test Driven Development of the game of TicTacToe in C#. 
