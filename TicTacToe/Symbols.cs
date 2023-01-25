@@ -13,18 +13,27 @@ namespace TicTacToe
 
         public static string SetSymbol(int player)
         {
-            if (player == 1)
+            try
             {
-                return ("X");
+                if (player == 1)
+                {
+                    return ("X");
+                }
+                else if (player == 2)
+                {
+                    return "O";
+                }
+                else
+                {
+                    throw new ArgumentOutOfRangeException();
+                }
             }
-            else if (player == 2)
+            catch (ArgumentOutOfRangeException)
             {
-                return "O";
+                Console.WriteLine("Invalid Player");
+                return "";
             }
-            else
-            {
-                throw new ArgumentOutOfRangeException();
-            }
+
         }
     }
 

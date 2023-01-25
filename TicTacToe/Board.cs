@@ -48,24 +48,27 @@ namespace TicTacToe
 
         public static bool FreeSpot(string[,] board, int row, int column)
         {
-            if (board[row, column] == "X")
-            {
-                Console.WriteLine("Occupied by the first player on position {0} {1}", row, column);
-                return false;
 
-            }
-            else if (board[row, column] == "O")
+            try
             {
-                Console.WriteLine("Occupied by the second player{0} {1}", row, column);
-                return false;
+                if ((board[row, column] == "X") || (board[row, column] == "O"))
+                {
+                    Console.WriteLine("Occupied by someone on position [{0}, {1}]", row, column);
+                    return false;
 
+                }
+                else if (board[row, column] == ".")
+                {
+                    return true;
+                }
+                else
+                    throw new Exception();
             }
-            else if (board[row, column] == ".")
+            catch (Exception)
             {
-                return true;
+                Console.WriteLine("Unknown symbol found");
+                return false;
             }
-            else
-                throw new Exception();
 
         }
     }

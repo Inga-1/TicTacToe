@@ -24,7 +24,7 @@ namespace TicTacToe.UnitTests
         {
             var result = Symbols.SetSymbol(3);
 
-            Assert.That(() => result, Throws.ArgumentException);
+            Assert.That(result, Is.EqualTo(""));
         }
 
     }

@@ -87,6 +87,35 @@ namespace TicTacToe.UnitTests
             Assert.That(result, Is.EqualTo(true));
         }
 
+        [Test]
 
+        public void WinByMainDiagonal_Player1WinsByDiagonal_ReturnTrue()
+        {
+            for (int i = 0; i < 3; i++)
+            {
+
+                _board[i, i] = "X";
+            }
+
+            var result = Player.WinByMainDiagonal(_board, _player);
+
+            Assert.That(result, Is.EqualTo(true));
+        }
+
+
+        [Test]
+
+        public void WinByReverseDiagonal_Player2WinsByReverseDiagonal_ReturnTrue()
+        {
+            _player = 2;    
+            _board[2, 0] = "O";
+            _board[1, 1] = "O";
+            _board[0, 2] = "O";
+
+
+            var result = Player.WinByReverseDiagonal(_board, _player);
+
+            Assert.That(result, Is.EqualTo(true));
+        }
     }
 }

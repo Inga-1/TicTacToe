@@ -80,7 +80,7 @@ namespace TicTacToe.UnitTests
 
             var result = Board.FreeSpot(_board, 0, 0);
 
-            Assert.That(() => result, Throws.Exception);
+            Assert.That(result, Is.EqualTo(false));
 
         }
 
