@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Linq;
 using System.Collections.Generic;
+using System.Diagnostics;
 
 namespace TicTacToe
 {
@@ -49,27 +50,31 @@ namespace TicTacToe
         public static bool FreeSpot(string[,] board, int row, int column)
         {
 
-            try
+            if ((board[row, column] == "X") || (board[row, column] == "O"))
             {
-                if ((board[row, column] == "X") || (board[row, column] == "O"))
-                {
-                    Console.WriteLine("Occupied by someone on position [{0}, {1}]", row, column);
-                    return false;
+                return false; //false
 
-                }
-                else if (board[row, column] == ".")
-                {
-                    return true;
-                }
-                else
-                    throw new Exception();
             }
-            catch (Exception)
+            else if (board[row, column] == ".")
             {
-                Console.WriteLine("Unknown symbol found");
-                return false;
+                return true; //true 
             }
+            return false;
 
         }
+
+        public static bool IsFull(string[,] board)
+        {
+            foreach(string position in board)
+            {
+                if(position == ".")
+                {
+                    return false;
+                }
+                continue;
+            }
+            return true;
+        }
+
     }
 }

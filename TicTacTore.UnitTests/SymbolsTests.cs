@@ -16,7 +16,7 @@ namespace TicTacToe.UnitTests
             var result = Symbols.SetSymbol(player);
 
             //Assert
-            Assert.That( result, Is.EqualTo(expectedResult));
+            Assert.That(result, Is.EqualTo(expectedResult));
         }
 
         [Test]

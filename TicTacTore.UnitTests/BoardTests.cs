@@ -7,7 +7,7 @@ namespace TicTacToe.UnitTests
         private string[,] _board;
 
         [SetUp]
-        public void SetUp() 
+        public void SetUp()
         {
             _board = new string[,] { { ".", ".", "." }, { ".", ".", "." }, { ".", ".", "." } };
         }
@@ -16,9 +16,9 @@ namespace TicTacToe.UnitTests
         [Test]
 
         //testing if Create() creates the right board 
-        public void Create_WhenCalled_GeneratesASquareOfDots() 
+        public void Create_WhenCalled_GeneratesASquareOfDots()
         {
-            string[,] board = new string[3,3];            
+            string[,] board = new string[3, 3];
 
             Board.Create(board);
 
@@ -41,7 +41,7 @@ namespace TicTacToe.UnitTests
         public void FreeSpot_WhenXIsFoundAtASpot_ReturnFalse()
         {
 
-            _board[0,0] = "X";
+            _board[0, 0] = "X";
 
             var result = Board.FreeSpot(_board, 0, 0);
 
@@ -54,7 +54,7 @@ namespace TicTacToe.UnitTests
         public void FreeSpot_WhenOIsFoundAtASpot_ReturnFalse()
         {
 
-            _board[0,0] = "O";
+            _board[0, 0] = "O";
 
             var result = Board.FreeSpot(_board, 0, 0);
 
@@ -84,6 +84,17 @@ namespace TicTacToe.UnitTests
 
         }
 
+        [Test]
+
+        public void IsFull_IfTheBoardIsFullAndNoOneWon_ReturnsTrue()
+        {
+            _board[0, 0] = _board[0, 2] = _board[1, 2] = _board[2, 0] = _board[2, 1] = "X";
+            _board[0, 1] = _board[1, 0] = _board[1, 1] = _board[2, 2] = "O";
+
+            var result = Board.IsFull(_board);
+            Assert.That(result, Is.True);
+
+        }
 
     }
 }
