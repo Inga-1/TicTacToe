@@ -22,9 +22,9 @@ namespace TicTacToe
 
         public static void Reset(Board board)
         {
-            for (int i = 0; i < 3; i++)
+            for (int i = 0; i < board.Boards.GetLength(0); i++)
             {
-                for (int j = 0; j < 3; j++)
+                for (int j = 0; j < board.Boards.GetLength(1); j++)
                 {
                     if (board.Boards[i, j] != ".")
                         board.Boards[i, j] = ".";
@@ -57,9 +57,7 @@ namespace TicTacToe
             foreach(string position in board.Boards)
             {
                 if(position == ".")
-                {
                     return false;
-                }
                 continue;
             }
             return true;

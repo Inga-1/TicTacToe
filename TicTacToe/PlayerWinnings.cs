@@ -5,8 +5,7 @@ namespace TicTacToe
 {
     public class PlayerWinnings
     {
-
-        public static bool WinByRows(Board board, Player player)
+        private static bool WinByRows(Board board, Player player)
         {
 
             //int i = 0;
@@ -23,7 +22,7 @@ namespace TicTacToe
         }
 
 
-        public static bool WinByColumns(Board board, Player player)
+        private static bool WinByColumns(Board board, Player player)
         {
             for (int i = 0; i < 3; i++)
             {
@@ -35,7 +34,7 @@ namespace TicTacToe
             return false;
         }
 
-        public static bool WinByMainDiagonal(Board board, Player player)
+        private static bool WinByMainDiagonal(Board board, Player player)
 
         /*e. g.
          * 
@@ -51,7 +50,7 @@ namespace TicTacToe
             return false;
         }
 
-        public static bool WinByReverseDiagonal(Board board, Player player)
+        private static bool WinByReverseDiagonal(Board board, Player player)
 
         /*e. g.
          * 
