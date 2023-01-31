@@ -2,70 +2,59 @@
 using System.Linq;
 using System.Collections.Generic;
 using System.Diagnostics;
+using System.Xml.Schema;
 
 namespace TicTacToe
 {
     public class Board
     {
-
-        //we create the initial board 
-        public static void Create(string[,] board)
+        public string[,] Boards;
+        public Board()
         {
-            for (int i = 0; i < board.GetLength(0); i++)
+            Boards = new string[,] { { ".", ".", "." }, { ".", ".", "." }, { ".", ".", "." } };
+        }
+
+        public Board(string[,] boards)
+ 
+        {
+            Boards = boards;
+        }
+
+        public static void Reset(Board board)
+        {
+            for (int i = 0; i < 3; i++)
             {
-                for (int j = 0; j < board.GetLength(1); j++)
+                for (int j = 0; j < 3; j++)
                 {
-                    board[i, j] = ".";
+                    if (board.Boards[i, j] != ".")
+                        board.Boards[i, j] = ".";
                 }
             }
         }
 
-        public static void Reset(string[,] board)
+        public static void PrintOutBoard(Board board)
         {
-            for (int i = 0; i < board.GetLength(0); i++)
+            for (int i = 0; i < board.Boards.GetLength(0); i++)
             {
-                for (int j = 0; j < board.GetLength(1); j++)
-                {
-                    if (board[i, j] != ".")
-                    {
-                        board[i, j] = ".";
-                    }
-                }
+                for (int j = 0; j < board.Boards.GetLength(1); j++)
+                    Write(board.Boards[i, j]);
+                WriteLine();
             }
         }
 
-        public static void PrintOutBoard(string[,] board)
-        {
-            for (int i = 0; i < board.GetLength(0); i++)
-            {
-                for (int j = 0; j < board.GetLength(1); j++)
-                {
-                    Console.Write(board[i, j]);
-                }
-                Console.WriteLine();
-            }
-
-        }
-
-        public static bool FreeSpot(string[,] board, int row, int column)
+        public static bool FreeSpot(Board board, int row, int column)
         {
 
-            if ((board[row, column] == "X") || (board[row, column] == "O"))
-            {
-                return false; //false
-
-            }
-            else if (board[row, column] == ".")
-            {
-                return true; //true 
-            }
+            if ((board.Boards[row, column] == "X") || (board.Boards[row, column] == "O"))
+                return false; 
+            else if (board.Boards[row, column] == ".")
+                return true; 
             return false;
-
         }
 
-        public static bool IsFull(string[,] board)
+        public static bool IsFull(Board board)
         {
-            foreach(string position in board)
+            foreach(string position in board.Boards)
             {
                 if(position == ".")
                 {
@@ -75,6 +64,5 @@ namespace TicTacToe
             }
             return true;
         }
-
     }
 }

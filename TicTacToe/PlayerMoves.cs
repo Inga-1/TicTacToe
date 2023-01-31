@@ -1,19 +1,19 @@
 ﻿namespace TicTacToe
 {
-    internal class PlayerMoves
+    internal class PlayerMoves 
     {
-        public static void Move(int player)
+        public static void Move(Player player)
         {
             //switches between player moves
 
-            if (player == 1)
+            if (player.id == 1)
             {
-                Console.WriteLine("It is the first player's move");
+                WriteLine("It is the first player's move");
 
             }
-            else if (player == 2)
+            else if (player.id == 2)
             {
-                Console.WriteLine("It is the second player's move");
+                WriteLine("It is the second player's move");
             }
             else
             {

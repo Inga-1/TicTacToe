@@ -4,12 +4,6 @@ namespace TicTacToe
 {
     public class Symbols
     {
-        private string symbol;
-
-        public Symbols(string symbol)
-        {
-            this.symbol = symbol;
-        }
 
         public static string SetSymbol(int player)
         {
@@ -30,7 +24,7 @@ namespace TicTacToe
             }
             catch (ArgumentOutOfRangeException)
             {
-                Console.WriteLine("Invalid Player");
+                WriteLine("Invalid Player");
                 return "";
             }
 

@@ -1,84 +1,88 @@
-﻿namespace TicTacToe
+﻿
+
+namespace TicTacToe
 {
+
     internal class Program
     {
 
         private static void Main()
         {
-            string[,] board = new string[3, 3];
-            int player = 1;
+            Board board = new();
 
-            Board.Create(board);
-            DisplayMethods.InitialMessageDisplay();
+            Player player = new();
 
-            var userReply = Console.ReadLine();
+            InitialMessageDisplay();
+
+            var userReply = ReadLine();
 
 
             if (userReply == "Y")
             {
-                DisplayMethods.RuleDisplay();
-                DisplayMethods.AfterRuleDisplay();
-                var replyOnStartingTheGame = Console.ReadLine(); //getting the new reply to understand if there should be further instructions or if the game should start 
+                RuleDisplay();
+                AfterRuleDisplay();
+                var replyOnStartingTheGame = ReadLine(); //getting the new reply to understand if there should be further instructions or if the game should start 
                 if (replyOnStartingTheGame == "Y")
                 {
-                    DisplayMethods.StartOfTheGame();
-                    Board.PrintOutBoard(board);
+                    StartOfTheGame();
+                    PrintOutBoard(board);
                 }
                 else
                 {
-                    DisplayMethods.ExampleDisplay();
-                    DisplayMethods.StartOfTheGame();
-                    Board.PrintOutBoard(board);
+                    ExampleDisplay();
+                    StartOfTheGame();
+                    PrintOutBoard(board);
                 }
             }
             else
             {
-                DisplayMethods.StartOfTheGame();
-                Board.PrintOutBoard(board);
+                StartOfTheGame();
+                PrintOutBoard(board);
             }
 
-            while (true){
+            while (true)
+            {
 
-                string[] position = DisplayMethods.ChooseTheRowAndColumn();
-                int row = Positions.PositionParsing(position[0]);
-                int column = Positions.PositionParsing(position[1]);
+                string[] position = ChooseTheRowAndColumn();
+                int row = PositionParsing(position[0]);
+                int column = PositionParsing(position[1]);
 
-                if(row == -1 || column == -1)
-                    DisplayMethods.WrongFormatDisplay();
+                if (row == -1 || column == -1)
+                    WrongFormatDisplay();
 
                 else
                 {
-                    if (Board.FreeSpot(board, row - 1, column - 1))
+                    if (FreeSpot(board, row - 1, column - 1))
                     {
-                        board[row - 1, column - 1] = Symbols.SetSymbol(player);
-                        Board.PrintOutBoard(board);
+                        board.Boards[row - 1, column - 1] = SetSymbol(player.id);
+                        PrintOutBoard(board);
 
-                        if (PlayerWinnings.Win(board, player))
+                        if (Win(board, player))
                         {
-                            Console.WriteLine("CONGRATULATIONS, PLAYER {0} YOU ARE THE WINNER!", player);
-                            string answer = DisplayMethods.PlayAgainDisplay();
+                            WriteLine("CONGRATULATIONS, PLAYER {0} YOU ARE THE WINNER!", player.id);
+                            string answer = PlayAgainDisplay();
                             if (answer == "Y")
-                                Board.Reset(board);
+                                Reset(board);
                             else
                                 break;
                         }
                         else
                         {
-                            player++;
-                            player = player % 2 == 0 ? 2 : 1;
-                            if (!Board.IsFull(board))
-                                Console.WriteLine("It is now player {0}'s turn", player);
+                            player.id++;
+                            player.id = player.id % 2 == 0 ? 2 : 1;
+                            if (!IsFull(board))
+                                WriteLine("It is now player {0}'s turn", player.id);
                             else
                             {
-                                DisplayMethods.FullBoardDisplay();
+                                FullBoardDisplay();
                                 break;
                             }
                         }
                     }
-                    else 
+                    else
                     {
-                        DisplayMethods.OccupiedSpotFound();
-                        Board.PrintOutBoard(board);
+                        OccupiedSpotFound();
+                        PrintOutBoard(board);
                     }
                 }
             }

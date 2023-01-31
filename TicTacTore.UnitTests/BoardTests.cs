@@ -1,39 +1,29 @@
-﻿using TicTacToe;
+﻿using static TicTacToe.Board;
 namespace TicTacToe.UnitTests
 {
     [TestFixture]
     public class BoardTests
     {
-        private string[,] _board;
+        public Board _board;
 
         [SetUp]
         public void SetUp()
         {
-            _board = new string[,] { { ".", ".", "." }, { ".", ".", "." }, { ".", ".", "." } };
-        }
-
-
-        [Test]
-
-        //testing if Create() creates the right board 
-        public void Create_WhenCalled_GeneratesASquareOfDots()
-        {
-            string[,] board = new string[3, 3];
-
-            Board.Create(board);
-
-            Assert.That(board, Is.EqualTo(_board));
+            _board = new Board();
         }
 
         [Test]
 
         public void Reset_WhenCalled_ChangesOtherSymbolsToDots()
         {
-            string[,] board = new string[,] { { "X", ".", "." }, { ".", "O", "." }, { ".", ".", "." } };
+            string[,] data = new string[,] { { ".", ".", "." }, { "X", ".", "." }, { ".", "O", "." } };
+            Board board = new(data);
 
-            Board.Reset(board);
+            //act
+            Reset(board);
 
-            Assert.That(board, Is.EqualTo(_board));
+            //assert
+            Assert.That(board.Boards, Is.EqualTo(_board.Boards));
         }
 
         [Test]
@@ -41,9 +31,9 @@ namespace TicTacToe.UnitTests
         public void FreeSpot_WhenXIsFoundAtASpot_ReturnFalse()
         {
 
-            _board[0, 0] = "X";
+            _board.Boards[0, 0] = "X";
 
-            var result = Board.FreeSpot(_board, 0, 0);
+            var result = FreeSpot(_board, 0, 0);
 
             Assert.That(result, Is.False);
 
@@ -54,9 +44,9 @@ namespace TicTacToe.UnitTests
         public void FreeSpot_WhenOIsFoundAtASpot_ReturnFalse()
         {
 
-            _board[0, 0] = "O";
+            _board.Boards[0, 0] = "O";
 
-            var result = Board.FreeSpot(_board, 0, 0);
+            var result = FreeSpot(_board, 0, 0);
 
             Assert.That(result, Is.False);
 
@@ -67,7 +57,7 @@ namespace TicTacToe.UnitTests
         public void FreeSpot_WhenDotIsFoundAtASpot_ReturnTrue()
         {
 
-            var result = Board.FreeSpot(_board, 0, 0);
+            var result = FreeSpot(_board, 0, 0);
 
             Assert.That(result, Is.True);
 
@@ -76,9 +66,9 @@ namespace TicTacToe.UnitTests
         [Test]
         public void FreeSpot_WhenRandomSymbolIsFoundAtASpot_ThrowsException()
         {
-            _board[0, 0] = "&";
+            _board.Boards[0, 0] = "&";
 
-            var result = Board.FreeSpot(_board, 0, 0);
+            var result = FreeSpot(_board, 0, 0);
 
             Assert.That(result, Is.EqualTo(false));
 
@@ -88,10 +78,10 @@ namespace TicTacToe.UnitTests
 
         public void IsFull_IfTheBoardIsFullAndNoOneWon_ReturnsTrue()
         {
-            _board[0, 0] = _board[0, 2] = _board[1, 2] = _board[2, 0] = _board[2, 1] = "X";
-            _board[0, 1] = _board[1, 0] = _board[1, 1] = _board[2, 2] = "O";
+            _board.Boards[0, 0] = _board.Boards[0, 2] = _board.Boards[1, 2] = _board.Boards[2, 0] = _board.Boards[2, 1] = "X";
+            _board.Boards[0, 1] = _board.Boards[1, 0] = _board.Boards[1, 1] = _board.Boards[2, 2] = "O";
 
-            var result = Board.IsFull(_board);
+            var result = IsFull(_board);
             Assert.That(result, Is.True);
 
         }
