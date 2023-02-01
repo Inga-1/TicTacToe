@@ -31,9 +31,9 @@
         public static void ReadingPositon(string[] position)
         {
             WriteLine("Row: ");
-            position[0] = ReadLine();
+            position[0] = ReadLine().ToUpper();
             WriteLine("Column: ");
-            position[1] = ReadLine();
+            position[1] = ReadLine().ToUpper();
         }
 
         public static string[] ChooseTheRowAndColumn()
@@ -41,7 +41,7 @@
             string[] position = new string[2];
 
             ReadingPositon(position);
-            while (position[0] == "" || position[1] == "") 
+            while (position[0] == "" || position[1] == "")
             {
                 WriteLine("Please enter a valid position");
                 ReadingPositon(position);
@@ -70,15 +70,15 @@
         public static string PlayAgainDisplay()
         {
             WriteLine("Would you like to play again? \nY or N");
-            string answer = ReadLine();
-            
-            if(answer == "Y" || answer == "N")
+            string answer = ReadLine().ToUpper();
+
+            if (answer == "Y" || answer == "N")
             {
                 return answer;
             }
             else
             {
-                answer = ReadLine();
+                answer = ReadLine().ToUpper();
             }
             return answer;
         }

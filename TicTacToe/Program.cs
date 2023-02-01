@@ -14,15 +14,15 @@ namespace TicTacToe
 
             InitialMessageDisplay();
 
-            var userReply = ReadLine();
+            var userReply = ReadLine().ToUpper();
 
 
             if (userReply == "Y")
             {
                 RuleDisplay();
                 AfterRuleDisplay();
-                var replyOnStartingTheGame = ReadLine(); //getting the new reply to understand if there should be further instructions or if the game should start 
-                if (replyOnStartingTheGame == "Y")
+                //getting the new reply to understand if there should be further instructions or if the game should start 
+                if (ReadLine().ToUpper() == "Y")
                 {
                     StartOfTheGame();
                     PrintOutBoard(board);
@@ -70,7 +70,7 @@ namespace TicTacToe
                         {
                             player.id++;
                             player.id = player.id % 2 == 0 ? 2 : 1;
-                            if (!IsFull(board))
+                            if (!FreeSpot(board))
                                 WriteLine("It is now player {0}'s turn", player.id);
                             else
                             {

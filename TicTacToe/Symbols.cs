@@ -27,7 +27,6 @@ namespace TicTacToe
                 WriteLine("Invalid Player");
                 return "";
             }
-
         }
     }
 

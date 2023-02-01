@@ -16,7 +16,7 @@ namespace TicTacToe.UnitTests
 
         [Test]
 
-        public void WinByRows_Player1WinsByFirstRow_ReturnTrue()
+        public void Win_Player1WinsByFirstRow_ReturnTrue()
         {
 
             for (int i = 0; i < 3; i++)
@@ -24,14 +24,14 @@ namespace TicTacToe.UnitTests
                 _board.Boards[i, 0] = "X";
             }
 
-            var result = WinByRows(_board, _player);
+            var result = Win(_board, _player);
 
             Assert.That(result, Is.EqualTo(true));
         }
 
         [Test]
 
-        public void WinByRows_Player2WinsByFirstRow_ReturnTrue()
+        public void Win_Player2WinsByFirstRow_ReturnTrue()
         {
             _player.id = 2;
             for (int i = 0; i < 3; i++)
@@ -39,14 +39,14 @@ namespace TicTacToe.UnitTests
                 _board.Boards[i, 0] = "O";
             }
 
-            var result = WinByRows(_board, _player);
+            var result = Win(_board, _player);
 
             Assert.That(result, Is.EqualTo(true));
         }
 
         [Test]
 
-        public void WinByRows_Player1WinsBySecondRow_ReturnTrue()
+        public void Win_Player1WinsBySecondRow_ReturnTrue()
         {
 
             for (int i = 0; i < 3; i++)
@@ -54,53 +54,53 @@ namespace TicTacToe.UnitTests
                 _board.Boards[i, 1] = "X";
             }
                 
-            var result = WinByRows(_board, _player);
+            var result = Win(_board, _player);
 
             Assert.That(result, Is.EqualTo(true));
         }
 
         [Test]
 
-        public void WinByColumn_Player1WinsBySecondColumn_ReturnTrue()
+        public void Win_Player1WinsBySecondColumn_ReturnTrue()
         {
             for (int i = 0; i < 3; i++)
             {
                 _board.Boards[1, i] = "X";
             }
 
-            var result = WinByColumns(_board, _player);
+            var result = Win(_board, _player);
 
             Assert.That(result, Is.EqualTo(true));
         }
 
         [Test]
 
-        public void WinByColumns_Player2WinsBySecondColumn_ReturnTrue()
+        public void Win_Player2WinsBySecondColumn_ReturnTrue()
         {
             _player.id = 2;
             for (int i = 0; i < 3; i++)
                 _board.Boards[1, i] = "O";
 
-            var result = WinByColumns(_board, _player);
+            var result = Win(_board, _player);
 
             Assert.That(result, Is.EqualTo(true));
         }
 
         [Test]
 
-        public void WinByMainDiagonal_Player1WinsByDiagonal_ReturnTrue()
+        public void Win_Player1WinsByDiagonal_ReturnTrue()
         {
             for (int i = 0; i < 3; i++)
                 _board.Boards[i, i] = "X";
 
-            var result = WinByMainDiagonal(_board, _player);
+            var result = Win(_board, _player);
                 
             Assert.That(result, Is.EqualTo(true));
         }
 
         [Test]
 
-        public void WinByReverseDiagonal_Player2WinsByReverseDiagonal_ReturnTrue()
+        public void Win_Player2WinsByReverseDiagonal_ReturnTrue()
         {
             _player.id = 2;
             _board.Boards[2, 0] = "O";
@@ -108,7 +108,7 @@ namespace TicTacToe.UnitTests
             _board.Boards[0, 2] = "O";
 
 
-            var result = WinByReverseDiagonal(_board, _player);
+            var result = Win(_board, _player);
 
             Assert.That(result, Is.EqualTo(true));
         }

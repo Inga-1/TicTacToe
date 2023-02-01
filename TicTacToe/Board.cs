@@ -1,21 +1,15 @@
-﻿using System;
-using System.Linq;
-using System.Collections.Generic;
-using System.Diagnostics;
-using System.Xml.Schema;
-
-namespace TicTacToe
+﻿namespace TicTacToe
 {
     public class Board
     {
-        public string[,] Boards;
+        public readonly string[,] Boards;
         public Board()
         {
             Boards = new string[,] { { ".", ".", "." }, { ".", ".", "." }, { ".", ".", "." } };
         }
 
         public Board(string[,] boards)
- 
+
         {
             Boards = boards;
         }
@@ -42,25 +36,26 @@ namespace TicTacToe
             }
         }
 
-        public static bool FreeSpot(Board board, int row, int column)
+        public static bool FreeSpot(Board board)
         {
-
-            if ((board.Boards[row, column] == "X") || (board.Boards[row, column] == "O"))
-                return false; 
-            else if (board.Boards[row, column] == ".")
-                return true; 
-            return false;
-        }
-
-        public static bool IsFull(Board board)
-        {
-            foreach(string position in board.Boards)
+            foreach (string position in board.Boards)
             {
-                if(position == ".")
+                if (position == ".")
                     return false;
                 continue;
             }
             return true;
+
+        }
+
+        public static bool FreeSpot(Board board, int row, int column)
+        {
+
+            if ((board.Boards[row, column] == "X") || (board.Boards[row, column] == "O"))
+                return false;
+            else if (board.Boards[row, column] == ".")
+                return true;
+            return false;
         }
     }
 }

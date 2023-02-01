@@ -1,7 +1,4 @@
-﻿using System.Net.NetworkInformation;
-using System.Numerics;
-
-namespace TicTacToe
+﻿namespace TicTacToe
 {
     public class PlayerWinnings
     {
@@ -20,7 +17,6 @@ namespace TicTacToe
             }
             return false;
         }
-
 
         private static bool WinByColumns(Board board, Player player)
         {

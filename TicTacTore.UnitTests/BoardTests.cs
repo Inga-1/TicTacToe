@@ -76,12 +76,12 @@ namespace TicTacToe.UnitTests
 
         [Test]
 
-        public void IsFull_IfTheBoardIsFullAndNoOneWon_ReturnsTrue()
+        public void FreeSpot_IfTheBoardIsFullAndNoOneWon_ReturnsTrue()
         {
             _board.Boards[0, 0] = _board.Boards[0, 2] = _board.Boards[1, 2] = _board.Boards[2, 0] = _board.Boards[2, 1] = "X";
             _board.Boards[0, 1] = _board.Boards[1, 0] = _board.Boards[1, 1] = _board.Boards[2, 2] = "O";
 
-            var result = IsFull(_board);
+            var result = FreeSpot(_board);
             Assert.That(result, Is.True);
 
         }
